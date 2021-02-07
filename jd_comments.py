@@ -25,12 +25,17 @@ def fetch(sku):
         'User-Agent': random_ua()
     }
     r = requests.get(url.format(sku), headers=header).text
-    g = re.match('.*"commentCount":(\d+).*', r)
-    if g and g.groups():
-        count = g[1]
-        log.write(f'{sku}:{count}\n')
+    a = re.match('.*"commentCount":(\d+).*', r)
+    b = re.match('.*"defaultGoodCount":(\d+).*', r)
+    c = re.match('.*"commentCount":(\d+).*', r)
+    d = re.match('.*"goodCount":(\d+).*', r)
+    e = re.match('.*"generalCount":(\d+).*', r)
+    f = re.match('.*"poorCount":(\d+).*', r)
+    g = re.match('.*"videoCount":(\d+).*', r)
+    h = re.match('.*"afterCount":(\d+).*', r)
+    if a and a.groups():
+        log.write(f'{sku}:{a[1]},{b[1]},{c[1]},{d[1]},{e[1]},{f[1]},{g[1]},{h[1]}\n')
         #print(sku, count)
-        return (sku, count)
     else:
         log.write(f'{sku}:None\n')
         raise
@@ -43,12 +48,10 @@ def main():
 
     log.write(f'starts at: {datetime.now()}\n')
     print(f'starts at: {datetime.now()}')
-    result = []
     for s in skus:
         try:
-            result.append(fetch(s))
+            fetch(s)
         except:
-            print(error, s)
             log.write(f'error at: {datetime.now()}\n')
             return
     print(f'ends at: {datetime.now()}')
