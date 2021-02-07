@@ -37,8 +37,8 @@ def fetch(sku):
         print(sku,':',a[1],b[1],c[1],d[1],e[1],f[1],g[1],h[1])
     else:
         #log.write(f'{sku}:None\n')
-        print(sku, ' None')
-        raise
+        print(sku, r)
+        #raise
 
 def main():
     skus = []
