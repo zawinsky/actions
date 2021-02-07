@@ -34,7 +34,7 @@ def fetch(sku):
     g = re.match('.*"videoCount":(\d+).*', r)
     h = re.match('.*"afterCount":(\d+).*', r)
     if a and a.groups():
-        print(sku,':'a[1],b[1],c[1],d[1],e[1],f[1],g[1],h[1])
+        print(sku,':',a[1],b[1],c[1],d[1],e[1],f[1],g[1],h[1])
     else:
         #log.write(f'{sku}:None\n')
         print(sku, ' None')
