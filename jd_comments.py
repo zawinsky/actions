@@ -6,7 +6,7 @@ from datetime import datetime
 import requests
 
 
-log = open('a.log', 'w')
+#log = open('a.log', 'w')
 url = 'https://club.jd.com/comment/skuProductPageComments.action?callback=fetchJSON_comment98&productId={0}&score=0&sortType=5&page=0&pageSize=10&isShadowSku=0&fold=1'
 
 filename = os.path.dirname(os.path.realpath(__file__))+'/useragents.csv'
@@ -34,10 +34,10 @@ def fetch(sku):
     g = re.match('.*"videoCount":(\d+).*', r)
     h = re.match('.*"afterCount":(\d+).*', r)
     if a and a.groups():
-        log.write(f'{sku}:{a[1]},{b[1]},{c[1]},{d[1]},{e[1]},{f[1]},{g[1]},{h[1]}\n')
-        #print(sku, count)
+        print(sku,':'a[1],b[1],c[1],d[1],e[1],f[1],g[1],h[1])
     else:
-        log.write(f'{sku}:None\n')
+        #log.write(f'{sku}:None\n')
+        print(sku, ' None')
         raise
 
 def main():
@@ -46,16 +46,17 @@ def main():
         for line in f:
             skus.append(line.replace('\n',''))
 
-    log.write(f'starts at: {datetime.now()}\n')
+    #log.write(f'starts at: {datetime.now()}\n')
     print(f'starts at: {datetime.now()}')
     for s in skus:
         try:
             fetch(s)
         except:
-            log.write(f'error at: {datetime.now()}\n')
+            #log.write(f'error at: {datetime.now()}\n')
+            print(f'error at: {datetime.now()}')
             return
     print(f'ends at: {datetime.now()}')
-    log.write(f'ends at: {datetime.now()}\n')
+    #log.write(f'ends at: {datetime.now()}\n')
 
 if __name__ == '__main__':
     main()
